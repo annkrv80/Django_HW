@@ -1,0 +1,21 @@
+{% extends 'shop_app/base.html' %}
+
+{% block title %} Заказы {{ client.name }} {% endblock %}
+
+{% block content %}
+    
+    <h2>Заказанны продукты клиентом: {{ client.name }} за 
+        {% if period == 'week' %}
+            неделю
+        {% elif period == 'month' %}
+            месяц
+        {% elif period == 'year' %}
+            год
+        {% endif %}
+    </h2>
+    
+    {% for product in products %}
+        <p>{{ product.name }}</p>
+    {% endfor %}
+  
+{% endblock %}

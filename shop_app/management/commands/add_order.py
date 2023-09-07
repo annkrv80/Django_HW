@@ -6,8 +6,10 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         order = Order.objects.create(
-            customer=Client.objects.get(pk=1),
-            total_price=99.99,
+            customer = Client.objects.get(pk=5),
+            total_price = 0
         )
-        order.products.add(Product.objects.get(pk=1))
+        order.products.add(Product.objects.get(pk=22))
+        order.total_price = sum(product.price for product in order.products.all())
+        order.save()
         self.stdout.write(self.style.SUCCESS('Информация успешно добавлена'))

@@ -23,6 +23,9 @@ class Product(models.Model):
     date_add = models.DateField(auto_now=True)
     image = models.ImageField(upload_to='media/')
 
+    def __str__(self):
+        return f'{self.name} цена {self.price}'
+
 class Order(models.Model):
     customer = models.ForeignKey(Client, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product)
